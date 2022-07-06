@@ -3,7 +3,6 @@ package ru.netology.page;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import lombok.val;
-import ru.netology.data.DataHelper;
 
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
@@ -18,17 +17,13 @@ public class DashboardPage {
     private ElementsCollection cards = $$(".list__item div");
     private final String balanceStart = "баланс: ";
     private final String balanceFinish = " р.";
-    public DashboardPage() {
+
+    public void verifyIsDashboardPage() {
         heading.shouldBe(visible);
     }
 
     public CardReplenishmentPage replenishmentCard(int index) {
         buttons.get(index).click();
-        return new CardReplenishmentPage();
-    }
-
-    public CardReplenishmentPage replenishmentSecondCard() {
-        buttons.get(1).click();
         return new CardReplenishmentPage();
     }
 
