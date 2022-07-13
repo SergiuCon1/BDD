@@ -10,6 +10,8 @@ import ru.netology.page.DashboardPage;
 import ru.netology.page.LoginPage;
 import ru.netology.page.VerificationPage;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 public class MoneyTransferSteps {
 
     private static LoginPage loginPage;
@@ -32,18 +34,12 @@ public class MoneyTransferSteps {
 
     @Когда("пользователь вводит сумму перевода {int} для перевода с карты {int}")
     public void filledDataForReplenishment(int amount, int indexCardFrom) {
+        cardReplenishmentPage.clearData();
         dashboardPage = cardReplenishmentPage.filledData(amount, indexCardFrom);
     }
 
-    @Тогда("итоговая сумма для первой карты {int}")
-    public void getCardBalanceForFirstCard(int expected) {
-        int index = 0;
-        dashboardPage.assertBalance(index, expected);
-    }
-
-    @Тогда("итоговая сумма для второй карты {int}")
-    public void getCardBalanceForSecondCard(int expected) {
-        int index = 1;
-        dashboardPage.assertBalance(index, expected);
+    @Тогда("итоговая сумма для карты с индексом {int} равняется {int}")
+    public void getCardBalanceForFirstCard(int index, int expected) {
+        assertEquals(dashboardPage.getCardBalance(index), expected);
     }
 }

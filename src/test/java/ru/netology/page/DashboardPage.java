@@ -7,7 +7,6 @@ import lombok.val;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class DashboardPage {
     private SelenideElement heading = $("[data-test-id=dashboard]");
@@ -37,10 +36,5 @@ public class DashboardPage {
         val finish = text.indexOf(balanceFinish);
         val value = text.substring(start + balanceStart.length(), finish);
         return Integer.parseInt(value);
-    }
-
-    public void assertBalance(int index, int expected) {
-        int actual = getCardBalance(index);
-        assertEquals(expected, actual);
     }
 }
