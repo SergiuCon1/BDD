@@ -22,7 +22,14 @@ public class CardReplenishmentPage {
 
     public DashboardPage filledData(int amount, int indexCardFrom) {
         amountMoney.val(String.valueOf(amount));
-        fromCard.val(data.getCardNumber(indexCardFrom));
+        switch (indexCardFrom) {
+            case 0:
+                fromCard.val(data.getFirstCardNumber());
+                break;
+            case 1:
+                fromCard.val(data.getSecondCardNumber());
+                break;
+        }
         sendButton.click();
         return new DashboardPage();
     }

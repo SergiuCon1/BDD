@@ -1,6 +1,7 @@
 package ru.netology.steps;
 
 import com.codeborne.selenide.Selenide;
+import io.cucumber.java.mn.Харин;
 import io.cucumber.java.ru.Когда;
 import io.cucumber.java.ru.Пусть;
 import io.cucumber.java.ru.Тогда;
@@ -36,6 +37,11 @@ public class MoneyTransferSteps {
     public void filledDataForReplenishment(int amount, int indexCardFrom) {
         cardReplenishmentPage.clearData();
         dashboardPage = cardReplenishmentPage.filledData(amount, indexCardFrom);
+    }
+
+    @Когда("пользователь очищает поля от прошлых данных")
+    public void clearData() {
+        cardReplenishmentPage.clearData();
     }
 
     @Тогда("итоговая сумма для карты с индексом {int} равняется {int}")
